@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Zero</title>
+    <title>Rainy</title>
     <style>
         /* ================== 全局与主屏幕样式 ================== */
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
@@ -308,6 +308,20 @@
         if (currentWidgetType === 'polaroid') { for(let i=0; i<3; i++) { const urlValue = document.getElementById(`img-url-${i}`).value; if (tempImages[i] && urlValue === "(已选择本地图片)") polaroidData[i].img = tempImages[i]; else if (urlValue !== "(已选择本地图片)") polaroidData[i].img = urlValue; currentEditingWidget.querySelector(`.p${i+1} img`).src = polaroidData[i].img; } } else if (currentWidgetType === 'douyin') { douyinData.text = document.getElementById('dy-text').value; const urlValue = document.getElementById('dy-img-url').value; if (tempImages[0] && urlValue === "(已选择本地图片)") douyinData.img = tempImages[0]; else if (urlValue !== "(已选择本地图片)") douyinData.img = urlValue; currentEditingWidget.querySelector('.dy-bubble').innerText = douyinData.text; currentEditingWidget.querySelector('.dy-avatar').src = douyinData.img; } else if (currentWidgetType === 'record') { const pUrlValue = document.getElementById('re-polaroid-url').value; const vUrlValue = document.getElementById('re-vinyl-url').value; if (tempImages[0] && pUrlValue === "(已选择本地图片)") recordData.polaroidImg = tempImages[0]; else if (pUrlValue !== "(已选择本地图片)") recordData.polaroidImg = pUrlValue; if (tempImages[1] && vUrlValue === "(已选择本地图片)") recordData.vinylImg = tempImages[1]; else if (vUrlValue !== "(已选择本地图片)") recordData.vinylImg = vUrlValue; currentEditingWidget.querySelector('.re-photo').src = recordData.polaroidImg; currentEditingWidget.querySelector('.re-vinyl-cover').src = recordData.vinylImg; } else if (currentWidgetType === 'music') { musicData.title = document.getElementById('mu-title-input').value; musicData.artist = document.getElementById('mu-artist-input').value; const urlValue = document.getElementById('mu-cover-url').value; if (tempImages[0] && urlValue === "(已选择本地图片)") musicData.img = tempImages[0]; else if (urlValue !== "(已选择本地图片)") musicData.img = urlValue; currentEditingWidget.querySelector('.mu-title').innerText = musicData.title; currentEditingWidget.querySelector('.mu-artist').innerText = musicData.artist; currentEditingWidget.querySelector('.mu-vinyl-cover').src = musicData.img; }
         tempImages = [null, null, null]; closeModal();
     }
+        // 注册 PWA Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        // 注意路径使用相对路径 './sw.js' 对 GitHub Pages 最友好
+        navigator.serviceWorker.register('./sw.js')
+          .then(registration => {
+            console.log('SW 注册成功:', registration.scope);
+          })
+          .catch(error => {
+            console.log('SW 注册失败:', error);
+          });
+      });
+    }
+
 </script>
 </body>
 </html>
