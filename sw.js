@@ -1,10 +1,9 @@
-const CACHE_NAME = 'Rainy';
+const CACHE_NAME = 'Rainy-v1'; // 悄悄加了个 -v1，以后如果你改了代码，把它改成 v2 就能强制手机更新啦！
 const urlsToCache = [
   './',
   './index.html',
   './manifest.json',
-  // 如果你准备了图标，把下面两行取消注释
-  // './icon.png'
+  './icon.png'  // 这里我帮你把注释去掉了，完美把图标也缓存进手机！
 ];
 
 // 安装 Service Worker 并缓存核心文件
