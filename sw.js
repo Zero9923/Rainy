@@ -4,8 +4,7 @@ const urlsToCache = [
   './index.html',
   './manifest.json',
   // 如果你准备了图标，把下面两行取消注释
-  // './icon-192.png',
-  // './icon-512.png'
+  // './icon.png'
 ];
 
 // 安装 Service Worker 并缓存核心文件
